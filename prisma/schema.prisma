@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Mentor {
+  id        String      @id @default(uuid())
+  name      String
+  email     String
+  github    String
+  linkedin  String?
+  mentees   Mentorado[]
+  m_max     Int
+  about     String
+  field     String
+  languages String[]
+}
+
+model Mentorado {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  github    String
+  linkedin  String?
+  about     String
+  field     String
+  languages String[]
+
+  Mentor   Mentor? @relation(fields: [mentorId], references: [id])
+  mentorId String?
+}
