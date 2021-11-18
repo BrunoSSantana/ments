@@ -13,6 +13,10 @@ const listAllMentorsController = new ListAllMentorsController()
 const listAllMentoradosController = new ListAllMentoradosController()
 
 routes
+  .post('/mentor/create', createMentorController.handle)
+  .get('/mentor', listAllMentorsController.handle)
+
+routes
   .post('/mentorado/create', createMentoradoController.handle)
   .get('/mentorado', listAllMentoradosController.handle)
 
