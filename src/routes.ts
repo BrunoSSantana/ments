@@ -2,15 +2,15 @@ import { Router } from 'express'
 
 import { CreateMentorController } from './modules/Mentor/useCases/CreateMentorUseCase/CreateMentorController'
 import { ListAllMentorsController } from './modules/Mentor/useCases/ListAllMentorsUseCase/ListAllMentorsController'
-import { CreateMentoradoController } from './modules/Mentorado/useCases/CreateMentoradoUseCase/CreateMentoradoController'
-import { ListAllMentoradosController } from './modules/Mentorado/useCases/ListAllMentoradosUseCase/ListAllMentoradosController'
+import { CreateMentoredController } from './modules/Mentored/useCases/CreateMentoredUseCase/CreateMentoredController'
+import { ListAllMentoredsController } from './modules/Mentored/useCases/ListAllMentoredsUseCase/ListAllMentoredsController'
 
 const routes = Router()
 
 const createMentorController = new CreateMentorController()
-const createMentoradoController = new CreateMentoradoController()
+const createMentoradoController = new CreateMentoredController()
 const listAllMentorsController = new ListAllMentorsController()
-const listAllMentoradosController = new ListAllMentoradosController()
+const listAllMentoradosController = new ListAllMentoredsController()
 
 routes
   .post('/mentor/create', createMentorController.handle)

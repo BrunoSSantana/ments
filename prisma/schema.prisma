@@ -16,14 +16,14 @@ model Mentor {
   email     String
   github    String
   linkedin  String?
-  mentees   Mentorado[]
+  mentoreds   Mentored[]
   m_max     Int
   about     String
   field     String
   languages String[]
 }
 
-model Mentorado {
+model Mentored {
   id        String   @id @default(uuid())
   name      String
   email     String

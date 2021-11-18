@@ -2,12 +2,12 @@ import { PrismaClient } from '.prisma/client'
 
 import { Request, Response } from 'express'
 
-import { CreateMentoradoService } from './CreateMentoradoService'
+import { CreateMentoredService } from './CreateMentoredService'
 
-class CreateMentoradoController {
+class CreateMentoredController {
   async handle(request: Request, response: Response): Promise<Response> {
     const prisma = new PrismaClient()
-    const createMentoradoService = new CreateMentoradoService(prisma)
+    const createMentoradoService = new CreateMentoredService(prisma)
 
     const { about, email, field, github, languages, name, linkedin } =
       request.body
@@ -25,4 +25,4 @@ class CreateMentoradoController {
   }
 }
 
-export { CreateMentoradoController }
+export { CreateMentoredController }
