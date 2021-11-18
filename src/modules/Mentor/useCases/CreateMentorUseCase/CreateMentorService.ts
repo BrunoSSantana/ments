@@ -1,5 +1,5 @@
-import { Mentor, PrismaClient } from '@prisma/client'
 import { ICreateMentorDTO } from '@modules/Mentor/dtos/ICreateMentorDTO'
+import { Mentor, PrismaClient } from '@prisma/client'
 
 class CreateMentorService {
   // eslint-disable-next-line prettier/prettier
