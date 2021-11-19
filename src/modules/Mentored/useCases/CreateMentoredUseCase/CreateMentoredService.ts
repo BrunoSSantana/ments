@@ -6,6 +6,7 @@ class CreateMentoredService {
   constructor(private repository: PrismaClient) {}
   async execute({
     about,
+    password,
     email,
     field,
     github,
@@ -14,7 +15,7 @@ class CreateMentoredService {
     linkedin
   }: ICreateMentoradoDTO): Promise<Mentored> {
     const mentorado = await this.repository.mentored.create({
-      data: { about, email, field, github, languages, name, linkedin }
+      data: { about, email, password, field, github, languages, name, linkedin }
     })
     return mentorado
   }

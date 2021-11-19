@@ -8,12 +8,22 @@ export class CreateMentorController {
     const prisma = new PrismaClient()
     const createMentorService = new CreateMentorService(prisma)
 
-    const { about, email, field, github, languages, linkedin, m_max, name } =
-      request.body
+    const {
+      about,
+      email,
+      password,
+      field,
+      github,
+      languages,
+      linkedin,
+      m_max,
+      name
+    } = request.body
 
     const mentor = await createMentorService.execute({
       about,
       email,
+      password,
       field,
       github,
       languages,

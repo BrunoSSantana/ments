@@ -9,12 +9,13 @@ class CreateMentoredController {
     const prisma = new PrismaClient()
     const createMentoradoService = new CreateMentoredService(prisma)
 
-    const { about, email, field, github, languages, name, linkedin } =
+    const { about, email, password, field, github, languages, name, linkedin } =
       request.body
 
     const mentorado = await createMentoradoService.execute({
       about,
       email,
+      password,
       field,
       github,
       languages,
