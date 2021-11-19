@@ -9,9 +9,12 @@ class AddMentoredController {
     const prisma = new PrismaClient()
     const addMentoredService = new AddMentoredService(prisma)
 
-    const { mentorId, mentoredId } = request.body
+    const { mentorEmail, mentoredEmail } = request.body
 
-    const mentor = await addMentoredService.execute({ mentorId, mentoredId })
+    const mentor = await addMentoredService.execute({
+      mentorEmail,
+      mentoredEmail
+    })
     return response.json(mentor)
   }
 }
