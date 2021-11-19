@@ -13,6 +13,7 @@ datasource db {
 model Mentor {
   id        String      @id @default(uuid())
   name      String
+  password  String
   email     String
   github    String
   linkedin  String?
@@ -26,6 +27,7 @@ model Mentor {
 model Mentored {
   id        String   @id @default(uuid())
   name      String
+  password  String
   email     String
   github    String
   linkedin  String?
