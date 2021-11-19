@@ -3,8 +3,7 @@ import { Mentor, PrismaClient } from '@prisma/client'
 import { hash } from 'bcryptjs'
 
 class CreateMentorService {
-  // eslint-disable-next-line prettier/prettier
-  constructor(private repository: PrismaClient) { }
+  constructor(private repository: PrismaClient) {}
   async execute({
     about,
     email,
@@ -16,22 +15,27 @@ class CreateMentorService {
     m_max,
     name
   }: ICreateMentorDTO): Promise<Mentor> {
-    const passwordHash = await hash(password, 16)
-    const mentor = await this.repository.mentor.create({
-      data: {
-        about,
-        email,
-        password: passwordHash,
-        field,
-        github,
-        m_max,
-        name,
-        languages,
-        linkedin
-      }
-    })
+    try {
+      const passwordHash = await hash(password, 8)
 
-    return mentor
+      const mentor = await this.repository.mentor.create({
+        data: {
+          about,
+          email,
+          password: passwordHash,
+          field,
+          github,
+          m_max,
+          name,
+          languages,
+          linkedin
+        }
+      })
+
+      return mentor
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 export { CreateMentorService }
