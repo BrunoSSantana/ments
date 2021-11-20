@@ -1,5 +1,7 @@
 import { Mentor, PrismaClient } from '.prisma/client'
 
+import { AppError } from '../../../../errors/AppErrors'
+
 interface IAddMentoredDTO {
   mentorEmail: string
   mentoredEmail: string
@@ -20,7 +22,7 @@ class AddMentoredService {
     // console.log('MAX >>', max)
     try {
       if (nOfMentoreds >= mentor.m_max) {
-        throw new Error('Number of mentees exceeded')
+        throw new AppError('Number of mentees exceeded')
       }
     } catch (error) {
       console.log(error)
@@ -31,7 +33,7 @@ class AddMentoredService {
     })
 
     if (mentored.mentorId) {
-      throw new Error('Existing Mentor')
+      throw new AppError('Existing Mentor')
     }
 
     const result = await this.repository.mentor.update({

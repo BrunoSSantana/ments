@@ -1,5 +1,7 @@
 import { PrismaClient } from '.prisma/client'
 
+import { AppError } from '../../../../errors/AppErrors'
+
 import { compare } from 'bcryptjs'
 import { sign } from 'jsonwebtoken'
 
@@ -24,17 +26,17 @@ class AuthenticateMentoredService {
       })
 
       if (mentorExist) {
-        throw new Error('User already exists!')
+        throw new AppError('User already exists!')
       }
 
       if (!user) {
-        throw new Error('Email/Password incorrect')
+        throw new AppError('Email/Password incorrect')
       }
 
       const passwordMatch = await compare(password, user.password)
 
       if (!passwordMatch) {
-        throw new Error('Email/Password incorrect')
+        throw new AppError('Email/Password incorrect')
       }
 
       const token = sign({ email: user.email }, process.env.SECRET_KEY, {

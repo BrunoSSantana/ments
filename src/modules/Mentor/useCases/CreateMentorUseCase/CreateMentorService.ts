@@ -2,6 +2,8 @@ import { ICreateMentorDTO } from '@modules/Mentor/dtos/ICreateMentorDTO'
 import { Mentor, PrismaClient } from '@prisma/client'
 import { hash } from 'bcryptjs'
 
+import { AppError } from '../../../../errors/AppErrors'
+
 class CreateMentorService {
   constructor(private repository: PrismaClient) {}
   async execute({
@@ -21,7 +23,7 @@ class CreateMentorService {
       })
 
       if (mentorExist) {
-        throw new Error('User already exists!')
+        throw new AppError('User already exists!')
       }
       const passwordHash = await hash(password, 8)
 
