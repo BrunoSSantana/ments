@@ -12,7 +12,7 @@ class AuthenticateMentoredController {
     const { email, password } = request.body
     const token = await authenticateMentoredService.execute({ email, password })
 
-    return response.json(token)
+    return response.json({ token })
   }
 }
 
