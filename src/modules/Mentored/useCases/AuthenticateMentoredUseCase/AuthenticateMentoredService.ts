@@ -19,6 +19,14 @@ class AuthenticateMentoredService {
         where: { email }
       })
 
+      const mentorExist = await this.repository.mentor.findFirst({
+        where: { email }
+      })
+
+      if (mentorExist) {
+        throw new Error('User already exists!')
+      }
+
       if (!user) {
         throw new Error('Email/Password incorrect')
       }
