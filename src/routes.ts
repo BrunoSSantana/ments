@@ -1,5 +1,6 @@
 import { Router } from 'express'
 
+import { ensureAuthenticated } from './middlewares/ensureAuthenticated'
 import { AddMentoredController } from './modules/Mentor/useCases/AddMentoredUseCase/AddMentoredController'
 import { AuthenticateMentorController } from './modules/Mentor/useCases/AuthenticateMentorUseCase/AuthenticateMentorController'
 import { CreateMentorController } from './modules/Mentor/useCases/CreateMentorUseCase/CreateMentorController'
@@ -21,13 +22,13 @@ const listAllMentoradosController = new ListAllMentoredsController()
 // Mentor
 routes
   .post('/mentor/create', createMentorController.handle)
-  .get('/mentor', listAllMentorsController.handle)
-  .put('/mentor/addMentored', addMentoredController.handle)
   .post('/mentor/login', authenticateMentorController.handle)
+  .get('/mentor', ensureAuthenticated, listAllMentorsController.handle)
+  .put('/mentor/addMentored', ensureAuthenticated, addMentoredController.handle)
 
 routes
   .post('/mentored/create', createMentoradoController.handle)
-  .get('/mentored', listAllMentoradosController.handle)
   .post('/mentored/login', authenticateMentoredController.handle)
+  .get('/mentored', ensureAuthenticated, listAllMentoradosController.handle)
 
 export { routes }
