@@ -18,7 +18,6 @@ class AddMentoredService {
     const nOfMentoreds = mentor.mentoreds.length
     // console.log('MENTOR >>', mentor)
     // console.log('MAX >>', max)
-
     try {
       if (nOfMentoreds >= mentor.m_max) {
         throw new Error('Number of mentees exceeded')
@@ -30,7 +29,11 @@ class AddMentoredService {
     const mentored = await this.repository.mentored.findFirst({
       where: { email: mentoredEmail }
     })
-    // console.log('MENTORED >>', mentored)
+
+    if (mentored.mentorId) {
+      throw new Error('Existing Mentor')
+    }
+
     const result = await this.repository.mentor.update({
       where: { id: mentor.id },
       data: { mentoreds: { connect: { id: mentored.id } } }
