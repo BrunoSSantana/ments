@@ -1,4 +1,4 @@
-import { Mentor, PrismaClient } from '.prisma/client'
+import { Mentor, PrismaClient } from '@prisma/client'
 
 import { AppError } from '../../../../errors/AppErrors'
 
@@ -20,12 +20,8 @@ class AddMentoredService {
     const nOfMentoreds = mentor.mentoreds.length
     // console.log('MENTOR >>', mentor)
     // console.log('MAX >>', max)
-    try {
-      if (nOfMentoreds >= mentor.m_max) {
-        throw new AppError('Number of mentees exceeded')
-      }
-    } catch (error) {
-      console.log(error)
+    if (nOfMentoreds >= mentor.m_max) {
+      throw new AppError('Number of mentees exceeded')
     }
 
     const mentored = await this.repository.mentored.findFirst({

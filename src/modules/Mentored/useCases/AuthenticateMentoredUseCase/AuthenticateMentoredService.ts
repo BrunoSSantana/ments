@@ -16,36 +16,32 @@ class AuthenticateMentoredService {
     email,
     password
   }: IAuthenticateMentoredDTO): Promise<string> {
-    try {
-      const user = await this.repository.mentored.findFirst({
-        where: { email }
-      })
+    const user = await this.repository.mentored.findFirst({
+      where: { email }
+    })
 
-      const mentorExist = await this.repository.mentor.findFirst({
-        where: { email }
-      })
+    const mentorExist = await this.repository.mentor.findFirst({
+      where: { email }
+    })
 
-      if (mentorExist) {
-        throw new AppError('User already exists!')
-      }
-
-      if (!user) {
-        throw new AppError('Email/Password incorrect')
-      }
-
-      const passwordMatch = await compare(password, user.password)
-
-      if (!passwordMatch) {
-        throw new AppError('Email/Password incorrect')
-      }
-
-      const token = sign({ email: user.email }, process.env.SECRET_KEY, {
-        expiresIn: '1d'
-      })
-      return token
-    } catch (error) {
-      console.log(error)
+    if (mentorExist) {
+      throw new AppError('User already exists!')
     }
+
+    if (!user) {
+      throw new AppError('Email/Password incorrect')
+    }
+
+    const passwordMatch = await compare(password, user.password)
+
+    if (!passwordMatch) {
+      throw new AppError('Email/Password incorrect')
+    }
+
+    const token = sign({ email: user.email }, process.env.SECRET_KEY, {
+      expiresIn: '1d'
+    })
+    return token
   }
 }
 

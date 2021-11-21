@@ -17,34 +17,30 @@ class CreateMentorService {
     m_max,
     name
   }: ICreateMentorDTO): Promise<Mentor> {
-    try {
-      const mentorExist = await this.repository.mentor.findFirst({
-        where: { email }
-      })
+    const mentorExist = await this.repository.mentor.findFirst({
+      where: { email }
+    })
 
-      if (mentorExist) {
-        throw new AppError('User already exists!')
-      }
-      const passwordHash = await hash(password, 8)
-
-      const mentor = await this.repository.mentor.create({
-        data: {
-          about,
-          email,
-          password: passwordHash,
-          field,
-          github,
-          m_max,
-          name,
-          languages,
-          linkedin
-        }
-      })
-
-      return mentor
-    } catch (error) {
-      console.log(error)
+    if (mentorExist) {
+      throw new AppError('User already exists!')
     }
+    const passwordHash = await hash(password, 8)
+
+    const mentor = await this.repository.mentor.create({
+      data: {
+        about,
+        email,
+        password: passwordHash,
+        field,
+        github,
+        m_max,
+        name,
+        languages,
+        linkedin
+      }
+    })
+
+    return mentor
   }
 }
 export { CreateMentorService }
