@@ -6,6 +6,8 @@ import 'express-async-errors'
 import { AppError } from './errors/AppErrors'
 import { routes } from './routes'
 
+const port = process.env.PORT || 3003
+
 const app = express()
 app.use(express.json())
 app.use(cors())
@@ -26,4 +28,4 @@ app.use(
   }
 )
 
-app.listen(3003, () => console.log('Template Run!'))
+app.listen(port, () => console.log('Template Run!'))
