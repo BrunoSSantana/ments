@@ -1,6 +1,7 @@
 import 'dotenv'
 import cors from 'cors'
 import express, { NextFunction, Request, Response } from 'express'
+import 'express-async-errors'
 
 import { AppError } from './errors/AppErrors'
 import { routes } from './routes'
