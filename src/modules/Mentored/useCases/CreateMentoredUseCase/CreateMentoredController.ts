@@ -5,14 +5,12 @@ import { Request, Response } from 'express'
 import { CreateMentoredService } from './CreateMentoredService'
 
 class CreateMentoredController {
+  constructor(private createMentored: CreateMentoredService) {}
   async handle(request: Request, response: Response): Promise<Response> {
-    const prisma = new PrismaClient()
-    const createMentoradoService = new CreateMentoredService(prisma)
-
     const { about, email, password, field, github, languages, name, linkedin } =
       request.body
 
-    const mentorado = await createMentoradoService.execute({
+    const mentorado = await this.createMentored.execute({
       about,
       email,
       password,
