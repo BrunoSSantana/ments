@@ -1,6 +1,6 @@
-import { prisma } from 'database/client'
-import { Mentored } from 'entities/Mentored'
-import { IMentoredsRepositories } from 'repositories/IMentoredsRepositories'
+import { prisma } from '../../database/client'
+import { Mentored } from '../../entities/Mentored'
+import { IMentoredsRepositories } from '../../repositories/IMentoredsRepositories'
 
 class PrismaMentoredsRepository implements IMentoredsRepositories {
   async create({
