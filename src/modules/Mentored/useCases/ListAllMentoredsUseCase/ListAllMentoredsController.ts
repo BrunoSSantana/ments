@@ -1,15 +1,11 @@
-import { PrismaClient } from '.prisma/client'
-
 import { Request, Response } from 'express'
 
 import { ListAllMentoredsService } from './ListAllMentoredsService'
 
 class ListAllMentoredsController {
+  constructor(private listAllMentoreds: ListAllMentoredsService) {}
   async handle(request: Request, response: Response): Promise<Response> {
-    const prisma = new PrismaClient()
-    const listAllMentoredsService = new ListAllMentoredsService(prisma)
-
-    const Mentoreds = await listAllMentoredsService.execute()
+    const Mentoreds = await this.listAllMentoreds.execute()
     return response.json(Mentoreds)
   }
 }

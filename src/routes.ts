@@ -7,11 +7,9 @@ import { createMentorFactory } from './modules/Mentor/useCases/CreateMentorUseCa
 import { listAllMentorsFactory } from './modules/Mentor/useCases/ListAllMentorsUseCase/ListAllMentorsFactory'
 import { AuthenticatementoredFactory } from './modules/Mentored/useCases/AuthenticateMentoredUseCase/AuthenticatementoredFactory'
 import { CreateMentoredFactory } from './modules/Mentored/useCases/CreateMentoredUseCase/CreateMentoredFactory'
-import { ListAllMentoredsController } from './modules/Mentored/useCases/ListAllMentoredsUseCase/ListAllMentoredsController'
+import { ListAllMentoredsFactory } from './modules/Mentored/useCases/ListAllMentoredsUseCase/ListAllMentoredsFactory'
 
 const routes = Router()
-
-const listAllMentoradosController = new ListAllMentoredsController()
 
 // Mentor
 routes
@@ -36,6 +34,8 @@ routes
   .post('/mentored/login', (request, response) => {
     AuthenticatementoredFactory().handle(request, response)
   })
-  .get('/mentored', ensureAuthenticated, listAllMentoradosController.handle)
+  .get('/mentored', ensureAuthenticated, (request, response) => {
+    ListAllMentoredsFactory().handle(request, response)
+  })
 
 export { routes }
