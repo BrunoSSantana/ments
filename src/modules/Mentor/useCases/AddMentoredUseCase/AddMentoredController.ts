@@ -1,17 +1,13 @@
-import { PrismaClient } from '.prisma/client'
-
 import { Request, Response } from 'express'
 
 import { AddMentoredService } from './AddMentoredService'
 
 class AddMentoredController {
+  constructor(private addMentoredService: AddMentoredService) {}
   async handle(request: Request, response: Response): Promise<Response> {
-    const prisma = new PrismaClient()
-    const addMentoredService = new AddMentoredService(prisma)
-
     const { mentorEmail, mentoredEmail } = request.body
 
-    const mentor = await addMentoredService.execute({
+    const mentor = await this.addMentoredService.execute({
       mentorEmail,
       mentoredEmail
     })
