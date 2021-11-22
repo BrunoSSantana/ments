@@ -1,7 +1,7 @@
-import { Mentored } from 'entities/Mentored'
 import { v4 as uuid } from 'uuid'
 
 import { Mentor } from '../../entities/Mentor'
+import { Mentored } from '../../entities/Mentored'
 import { IMentorsRepositories } from '../../repositories/IMentorsRepositories'
 
 class MentorsRepositoryInMemory implements IMentorsRepositories {
