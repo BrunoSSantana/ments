@@ -1,11 +1,10 @@
-import { Mentor, PrismaClient } from '.prisma/client'
+import { Mentor } from '../../../../entities/Mentor'
+import { IMentorsRepositories } from '../../../../repositories/IMentorsRepositories'
 
 class ListAllMentorsService {
-  constructor(private repository: PrismaClient) {}
+  constructor(private mentorsRepository: IMentorsRepositories) {}
   async execute(): Promise<Mentor[]> {
-    const allMentors = await this.repository.mentor.findMany({
-      include: { mentoreds: true }
-    })
+    const allMentors = await this.mentorsRepository.findAll()
     return allMentors
   }
 }
