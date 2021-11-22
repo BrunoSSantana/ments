@@ -2,7 +2,7 @@ import { Router } from 'express'
 
 import { ensureAuthenticated } from './middlewares/ensureAuthenticated'
 import { AddMentoredController } from './modules/Mentor/useCases/AddMentoredUseCase/AddMentoredController'
-import { AuthenticateMentorController } from './modules/Mentor/useCases/AuthenticateMentorUseCase/AuthenticateMentorController'
+import { AuthenticateMentorFactory } from './modules/Mentor/useCases/AuthenticateMentorUseCase/AuthenticateMentorFactory'
 import { createMentorFactory } from './modules/Mentor/useCases/CreateMentorUseCase/CreateMentorFactory'
 import { listAllMentorsFactory } from './modules/Mentor/useCases/ListAllMentorsUseCase/ListAllMentorsFactory'
 import { AuthenticateMentoredController } from './modules/Mentored/useCases/AuthenticateMentoredUseCase/AuthenticateMentoredController'
@@ -11,7 +11,6 @@ import { ListAllMentoredsController } from './modules/Mentored/useCases/ListAllM
 
 const routes = Router()
 
-const authenticateMentorController = new AuthenticateMentorController()
 const authenticateMentoredController = new AuthenticateMentoredController()
 const createMentoradoController = new CreateMentoredController()
 const addMentoredController = new AddMentoredController()
@@ -22,7 +21,9 @@ routes
   .post('/mentor/create', (request, response) => {
     createMentorFactory().handle(request, response)
   })
-  .post('/mentor/login', authenticateMentorController.handle)
+  .post('/mentor/login', (request, response) => {
+    AuthenticateMentorFactory().handle(request, response)
+  })
   .get('/mentor', ensureAuthenticated, (request, response) => {
     listAllMentorsFactory().handle(request, response)
   })
