@@ -1,11 +1,12 @@
-import { ICreateMentorDTO } from '@modules/Mentor/dtos/ICreateMentorDTO'
-import { Mentor, PrismaClient } from '@prisma/client'
 import { hash } from 'bcryptjs'
+import { IMentorsRepositories } from 'repositories/IMentorsRepositories'
 
+import { Mentor } from '../../../../entities/Mentor'
 import { AppError } from '../../../../errors/AppErrors'
+import { ICreateMentorDTO } from '../../dtos/ICreateMentorDTO'
 
 class CreateMentorService {
-  constructor(private repository: PrismaClient) {}
+  constructor(private mentorsRepository: IMentorsRepositories) {}
   async execute({
     about,
     email,
@@ -17,28 +18,25 @@ class CreateMentorService {
     m_max,
     name
   }: ICreateMentorDTO): Promise<Mentor> {
-    const mentorExist = await this.repository.mentor.findFirst({
-      where: { email }
-    })
+    const mentorExist = await this.mentorsRepository.findByemail(email)
 
     if (mentorExist) {
       throw new AppError('User already exists!')
     }
     const passwordHash = await hash(password, 8)
 
-    const mentor = await this.repository.mentor.create({
-      data: {
-        about,
-        email,
-        password: passwordHash,
-        field,
-        github,
-        m_max,
-        name,
-        languages,
-        linkedin
-      }
+    const mentorCreate = Mentor.create({
+      about,
+      email,
+      password: passwordHash,
+      field,
+      github,
+      m_max,
+      name,
+      languages,
+      linkedin
     })
+    const mentor = await this.mentorsRepository.create(mentorCreate)
 
     return mentor
   }

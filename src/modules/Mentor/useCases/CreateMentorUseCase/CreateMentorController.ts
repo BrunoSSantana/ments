@@ -4,10 +4,8 @@ import { Request, Response } from 'express'
 import { CreateMentorService } from './CreateMentorService'
 
 export class CreateMentorController {
+  constructor(private createMentor: CreateMentorService) {}
   async handle(request: Request, response: Response): Promise<Response> {
-    const prisma = new PrismaClient()
-    const createMentorService = new CreateMentorService(prisma)
-
     const {
       about,
       email,
@@ -20,7 +18,7 @@ export class CreateMentorController {
       name
     } = request.body
 
-    const mentor = await createMentorService.execute({
+    const mentor = await this.createMentor.execute({
       about,
       email,
       password,
@@ -31,6 +29,7 @@ export class CreateMentorController {
       m_max,
       name
     })
+    console.log('passou')
 
     return response.json(mentor)
   }
