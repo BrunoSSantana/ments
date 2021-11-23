@@ -29,7 +29,6 @@ export class CreateMentorController {
       m_max,
       name
     })
-    console.log('passou')
 
     return response.json(mentor)
   }
