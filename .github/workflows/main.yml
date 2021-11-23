@@ -50,9 +50,6 @@ jobs:
     - name: Install dependencies
       run: yarn --frozen-lockfile
 
-    - name: Run all tests
-      run: yarn test
-
     - name: Deploy application
       if: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' }}
       uses: akhileshns/heroku-deploy@v3.12.12
