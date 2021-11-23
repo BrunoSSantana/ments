@@ -10,7 +10,7 @@ class MentorsRepositoryInMemory implements IMentorsRepositories {
     mentorEmail: string,
     mentoredEmail: string
   ): Promise<Mentor> {
-    const mentor = await this.findByemail(mentorEmail)
+    const mentor = this.mentors.find(mentor => mentor.email === mentorEmail)
     const mentored = Mentored.create({
       name: 'nameExample',
       password: 'passwordExample',
