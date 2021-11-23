@@ -1,5 +1,4 @@
-import { PrismaMentoredsRepository } from 'repositories/prisma/PrismaMentoredsRepository'
-
+import { PrismaMentoredsRepository } from '../../../../repositories/prisma/PrismaMentoredsRepository'
 import { ListAllMentoredsController } from './ListAllMentoredsController'
 import { ListAllMentoredsService } from './ListAllMentoredsService'
 
