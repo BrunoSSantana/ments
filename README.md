@@ -35,7 +35,7 @@ Nossa aplicação possue nas seguintes funcionalidades
 - [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/)
 - One instance of [PostgreSQL](https://www.postgresql.org/)
 
-* **suggestion**
+* **Sugestão**
 Você pode criar uma instancia do postgres com as configurações utilizadas no projeto utilizando o docker, executando o seguinte comando::
 ```sh
 docker run --name postgres-db -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
