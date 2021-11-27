@@ -18,8 +18,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
-        mongodb-version: [4.2]
+        node-version: [16.x]
         
     services:
       # Label used to access the service container
@@ -49,6 +48,9 @@ jobs:
 
     - name: Install dependencies
       run: yarn --frozen-lockfile
+      
+    - name: Run Test
+      run: yarn test
 
     - name: Deploy application
       if: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' }}
