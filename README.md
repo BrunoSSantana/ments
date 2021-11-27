@@ -1,3 +1,31 @@
+<h1 align="center">
+	<img alt="Logo" src=".github/assets/logo.png" />
+</h1>
+
+<h3 align="center">
+  MENTS
+</h3>
+
+<p align="center">
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/BrunoSSantana/ments">
+
+  <a href="https://www.linkedin.com/in/bruno-santanas/">
+    <img alt="Made by" src="https://img.shields.io/badge/made%20by-Bruno%20Santana-gree">
+  </a>
+  
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/BrunoSSantana/ments">
+  
+  <a href="https://github.com/BrunoSSantana/ments/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/BrunoSSantana/ments">
+  </a>
+  
+  <a href="https://github.com/BrunoSSantana/ments/issues">
+    <img alt="Repository issues" src="https://img.shields.io/github/issues/BrunoSSantana/ments">
+  </a>
+  
+  <img alt="GitHub" src="https://img.shields.io/github/license/BrunoSSantana/ments">
+</p>
+
 <p align="center">
   <a href="#-sobre"> Sobre </a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#️-funcionalidades">Funcionalidades</a>
