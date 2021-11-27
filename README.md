@@ -1,6 +1,6 @@
-<h1 align="center">
-	<img alt="Logo" src=".github/assets/logo.png" />
-</h1>
+<p align="center">
+	<img alt="Logo" src=".github/assets/logo.png" height="100px" />
+</p>
 
 <h3 align="center">
   MENTS
