@@ -10,31 +10,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Mentor {
-  id        String      @id @default(uuid())
-  name      String
-  password  String
-  email     String
-  github    String
-  linkedin  String?
-  mentoreds   Mentored[]
-  m_max     Int
-  about     String
-  field     String
-  languages String[]
-}
-
-model Mentored {
+model User {
   id        String   @id @default(uuid())
   name      String
   password  String
   email     String
   github    String
   linkedin  String?
+  mentoreds User[]   @relation("UserToUser")
+  m_max     Int?
   about     String
   field     String
   languages String[]
-
-  Mentor   Mentor? @relation(fields: [mentorId], references: [id])
-  mentorId String?
+  User      User?    @relation("UserToUser", fields: [userIds], references: [id])
+  userIds   String[]
 }
