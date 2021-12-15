@@ -17,11 +17,7 @@ model User {
   email     String
   github    String
   linkedin  String?
-  mentoreds User[]   @relation("UserToUser")
-  m_max     Int?
   about     String
   field     String
   languages String[]
-  User      User?    @relation("UserToUser", fields: [userIds], references: [id])
-  userIds   String[]
 }
