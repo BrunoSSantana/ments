@@ -5,11 +5,8 @@ WORKDIR /usr/app
 
 # Install app dependencies
 COPY package*.json ./
-RUN ls
 COPY . .
 RUN npm install
-
-RUN ls
 
 ENV DATABASE_URL=postgresql://postgres:docker@localhost:5432/ments?schema=public
 ENV SECRET_KEY=7f7fccd0-6ad2-4a6a-b761-ca4b5f02f930
