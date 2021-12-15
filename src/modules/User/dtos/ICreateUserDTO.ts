@@ -5,7 +5,6 @@ export interface ICreateUserDTO {
   email: string
   field: string
   github: string
-  m_max: number
   languages: string[]
   linkedin?: string
 }

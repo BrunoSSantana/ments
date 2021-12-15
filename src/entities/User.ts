@@ -1,4 +1,4 @@
-class Mentor {
+class User {
   id?: string
   name: string
   password: string
@@ -18,7 +18,7 @@ class Mentor {
     about,
     field,
     languages
-  }: Mentor) {
+  }: User) {
     return Object.assign(this, {
       name,
       password,
@@ -40,8 +40,8 @@ class Mentor {
     about,
     field,
     languages
-  }: Mentor): Mentor {
-    const mentor = new Mentor({
+  }: User): User {
+    const mentor = new User({
       name,
       password,
       email,
@@ -55,4 +55,4 @@ class Mentor {
   }
 }
 
-export { Mentor }
+export { User }
