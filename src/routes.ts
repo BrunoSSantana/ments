@@ -1,41 +1,19 @@
 import { Router } from 'express'
 
 import { ensureAuthenticated } from './middlewares/ensureAuthenticated'
-import { AddMentoredFactory } from './modules/Mentor/useCases/AddMentoredUseCase/AddMentoredFactory'
-import { AuthenticateMentorFactory } from './modules/Mentor/useCases/AuthenticateMentorUseCase/AuthenticateMentorFactory'
-import { createMentorFactory } from './modules/Mentor/useCases/CreateMentorUseCase/CreateMentorFactory'
-import { listAllMentorsFactory } from './modules/Mentor/useCases/ListAllMentorsUseCase/ListAllMentorsFactory'
-import { AuthenticatementoredFactory } from './modules/Mentored/useCases/AuthenticateMentoredUseCase/AuthenticatementoredFactory'
-import { CreateMentoredFactory } from './modules/Mentored/useCases/CreateMentoredUseCase/CreateMentoredFactory'
-import { ListAllMentoredsFactory } from './modules/Mentored/useCases/ListAllMentoredsUseCase/ListAllMentoredsFactory'
 
 const routes = Router()
 
 // Mentor
 routes
-  .post('/mentor/create', (request, response) => {
+  .post('/user/create', (request, response) => {
     createMentorFactory().handle(request, response)
   })
-  .post('/mentor/login', (request, response) => {
+  .post('/user/login', (request, response) => {
     AuthenticateMentorFactory().handle(request, response)
   })
-  .get('/mentor', ensureAuthenticated, (request, response) => {
+  .get('/user', ensureAuthenticated, (request, response) => {
     listAllMentorsFactory().handle(request, response)
-  })
-  .put('/mentor/addMentored', ensureAuthenticated, (request, response) => {
-    AddMentoredFactory().handle(request, response)
-  })
-
-// Mentored
-routes
-  .post('/mentored/create', (request, response) => {
-    CreateMentoredFactory().handle(request, response)
-  })
-  .post('/mentored/login', (request, response) => {
-    AuthenticatementoredFactory().handle(request, response)
-  })
-  .get('/mentored', ensureAuthenticated, (request, response) => {
-    ListAllMentoredsFactory().handle(request, response)
   })
 
 export { routes }

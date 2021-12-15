@@ -1,4 +1,4 @@
-import { Mentor } from 'entities/Mentor'
+import { Mentor } from 'entities/User'
 
 interface IMentorsRepositories {
   addMentored(mentor_id: string, mentored_id: string): Promise<Mentor>

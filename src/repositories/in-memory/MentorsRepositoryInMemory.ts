@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid'
 
-import { Mentor } from '../../entities/Mentor'
+import { Mentor } from '../../entities/User'
 import { Mentored } from '../../entities/Mentored'
 import { IMentorsRepositories } from '../../repositories/IMentorsRepositories'
 

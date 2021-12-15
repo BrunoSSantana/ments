@@ -1,10 +1,11 @@
-export interface ICreateMentoradoDTO {
+export interface ICreateUserDTO {
   about: string
-  email: string
+  name: string
   password: string
+  email: string
   field: string
   github: string
-  name: string
+  m_max: number
   languages: string[]
   linkedin?: string
 }

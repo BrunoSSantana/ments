@@ -1,4 +1,4 @@
-class Mentored {
+class Mentor {
   id?: string
   name: string
   password: string
@@ -8,7 +8,6 @@ class Mentored {
   about: string
   field: string
   languages: string[]
-  mentorId?: string | null
 
   private constructor({
     name,
@@ -19,7 +18,7 @@ class Mentored {
     about,
     field,
     languages
-  }: Mentored) {
+  }: Mentor) {
     return Object.assign(this, {
       name,
       password,
@@ -41,8 +40,8 @@ class Mentored {
     about,
     field,
     languages
-  }: Mentored): Mentored {
-    const mentor = new Mentored({
+  }: Mentor): Mentor {
+    const mentor = new Mentor({
       name,
       password,
       email,
@@ -56,4 +55,4 @@ class Mentored {
   }
 }
 
-export { Mentored }
+export { Mentor }

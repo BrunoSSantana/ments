@@ -1,5 +1,5 @@
 import { prisma } from '../../database/client'
-import { Mentor } from '../../entities/Mentor'
+import { Mentor } from '../../entities/User'
 import { IMentorsRepositories } from '../IMentorsRepositories'
 
 class PrismaMentorsRepository implements IMentorsRepositories {
