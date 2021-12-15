@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  database_ments:
+    image: postgres
+    container_name: database_ments
+    restart: always
+    ports: 
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=ignite
+      - POSTGRES_DB=rentalx
+    volumes:
+      - pgdata:/data/postgres
+
+  app:
+    container_name: ments
+    build: .
+    ports: 
+      - 3003:3003
+    volumes: 
+      - ./:/usr/app
+    links: 
+      - database_ments
+    depends_on: 
+      - database_ments
+
+volumes:
+  pgdata:
+    driver: local
